@@ -6,7 +6,7 @@ var StageBase = require('./stage_base');
 class Stage4 extends StageBase {
   constructor(config) {
     super(config)
-    this.runTimeout = 10000
+    this.runTimeout = 15000
   }
 
   run(done) {
