@@ -1,0 +1,50 @@
+<div class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        Edit challenger
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+<div class="well bs-component">
+  <form class="form-horizontal" method="post" action="/challengers">
+    <input type="hidden" name="_id" value="<%= challenger._id %>" />
+    <fieldset>
+      <legend>Add new challenger</legend>
+      <div class="form-group">
+        <label for="inputName" class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-10">
+          <input type="text" name="name" class="form-control" id="inputName" placeholder="name" value="<%= challenger.name %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddr" class="col-lg-2 control-label">Address</label>
+        <div class="col-lg-10">
+          <input type="text" name="addr" class="form-control" id="inputAddr" placeholder="127.0.0.1:27017" value="<%= challenger.addr %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Status</label>
+        <div class="col-lg-10">
+          <% if ( challenger.status == 'active' ) { %>
+          <button name="status" value="deactive" class="btn btn-success">activate</button>
+          <% } else { %>
+          <button name="status" value="active" class="btn btn-warning">deactivate</button>
+          <% } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

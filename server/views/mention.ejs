@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= `${user.name}'s mentioned` %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= `${user.name}'s mentioned` %></h1>
+    <% include _userInfo %>
+    <% include _tweets %>
+  </body>
+</html>

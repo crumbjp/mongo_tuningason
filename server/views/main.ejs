@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= `${user.name}'s main` %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= `${user.name}'s main` %></h1>
+    <% include _userInfo %>
+    <h2>post</h2>
+    <form method="post" action="/post">
+      <textarea name="body" rows="4"></textarea>
+      <input type="submit" name="tweet" />
+    </form>
+    <% include _tweets %>
+  </body>
+</html>

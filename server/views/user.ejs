@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= `${user.name}'s posts` %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= `${user.name}'s posts` %></h1>
+    <% include _userInfo %>
+    <% include _tweets %>
+  </body>
+</html>

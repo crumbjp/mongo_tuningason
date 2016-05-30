@@ -1,0 +1,38 @@
+<h1>Ranking</h1>
+
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>name</th>
+      <th>stage</th>
+      <th>score</th>
+      <th>startAt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (var i in rankings ) { var ranking = rankings[i]; var order = parseInt(i) + 1;%>
+    <tr <% if ( order == 1 ) { %>
+      class="warning lead text-primary"
+      <% } else if (order <= 3 ) { %>
+      class="warning lead text-info"
+      <% } %> >
+      <td>
+        <% if (order == 1) { %>
+        <%- img_tag('/images/master_joda.png', {style: "height: 2em;"}) %>
+        <% } else if (order == 2){ %>
+        <%- img_tag('/images/dart_wader.png', {style: "height: 2em;"}) %>
+        <% } else if (order == 3){ %>
+        <%- img_tag('/images/death_star.png', {style: "height: 2em;"}) %>
+        <% } else { %>
+        <%= order %>
+        <% } %>
+      </td>
+      <td><strong><%= ranking._id %><strong></td>
+      <td><%= ranking.best.stage %></td>
+      <td><%= Math.floor(ranking.best.score * 100000) / 100 %></td>
+      <td><%= toDateString(ranking.best.startAt) %></td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>

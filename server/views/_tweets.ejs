@@ -1,0 +1,10 @@
+<h2>tweets</h2>
+<ul>
+<% for (var i in tweets ) { var tweet = tweets[i]; %>
+  <li>
+    <h6>by "<%= tweet.name %>"</h6>
+    <div><%= tweet.createdAt.toLocaleString() %></div>
+    <div><%= tweet.body %></div>
+  </li>
+<% } %>
+</ul>
