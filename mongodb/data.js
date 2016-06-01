@@ -1,7 +1,7 @@
 use mongo_tuningason;
 
-var NUM_USERS = 10000000
-var NUM_TWEETS = 300
+var NUM_USERS = 30000000
+var NUM_TWEETS = 600
 
 db.contents.drop();
 db.users.drop();
@@ -400,6 +400,9 @@ var SENTENCES = [
 "Follow Us.",
 ];
 
+var ACTIVE_USER_PROPOTION = 300;
+var DEACTIVE_USER_PROPOTION = 3;
+
 var bulk = null;
 var userIds = []
 for ( var i = 0; i < NUM_USERS; i++ ) {
@@ -418,17 +421,17 @@ for ( var i = 0; i < NUM_USERS; i++ ) {
     followIds: followIds,
     status: 'beforeLogin'
   }
-  if ( !(i % 300) ) {
+  if ( !(i % ACTIVE_USER_PROPOTION) ) {
     userIds.push({
       _id: _id,
       name: name
     });
     data.status = 'active';
-    data.numLogin = Math.floor(i / 300) % 100;
-    for (var index = userIds.length - 1; index > 0 ; index = Math.floor(index * index / (NUM_USERS / 300) )) {
+    data.numLogin = Math.floor(i / ACTIVE_USER_PROPOTION) % 100;
+    for (var index = userIds.length - 1; index > 0 ; index = Math.floor(index * index / (NUM_USERS / ACTIVE_USER_PROPOTION) )) {
       followIds.push(userIds[index]._id);
     }
-    if ( !(i % 900) ) {
+    if ( !(i % (ACTIVE_USER_PROPOTION * DEACTIVE_USER_PROPOTION) ) {
       data.status = 'deactive';
     }
   }
