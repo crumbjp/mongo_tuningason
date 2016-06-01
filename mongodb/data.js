@@ -431,7 +431,7 @@ for ( var i = 0; i < NUM_USERS; i++ ) {
     for (var index = userIds.length - 1; index > 0 ; index = Math.floor(index * index / (NUM_USERS / ACTIVE_USER_PROPOTION) )) {
       followIds.push(userIds[index]._id);
     }
-    if ( !(i % (ACTIVE_USER_PROPOTION * DEACTIVE_USER_PROPOTION) ) {
+    if ( !(i % (ACTIVE_USER_PROPOTION * DEACTIVE_USER_PROPOTION) )) {
       data.status = 'deactive';
     }
   }
