@@ -4,6 +4,11 @@ var Loader = require('./loader');
 var StageBase = require('./stage_base');
 
 class Stage2 extends StageBase {
+  constructor(config) {
+    super(config)
+    this.runTimeout = 3500
+  }
+
   run(done) {
     var _this = this;
     this.userNames = this.allUserNames.slice(-3, -1);
@@ -21,6 +26,16 @@ class Stage2 extends StageBase {
           async.eachSeries(_this.tags, (tag, done) =>
             loader.requestTag(tag, done),
           done),
+        (done) => loader.requestMain(done),
+        (done) => loader.requestFollowers(userName, done),
+        (done) =>
+          async.eachSeries(loader.followers.slice(0,100), (followerName, done) => {
+            loader.requestFollowers(followerName, done)
+          }, done),
+        (done) =>
+          async.eachSeries(loader.followers.slice(0, 30), (followerName, done) => {
+            loader.requestMention(followerName, done)
+          }, done),
         (done) => loader.requestMain(done),
       ], done);
     }, done)

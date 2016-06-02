@@ -6,12 +6,18 @@ var StageBase = require('./stage_base');
 class Stage3 extends StageBase {
   constructor(config) {
     super(config)
-    this.runTimeout = 3500
+    this.runTimeout = 15000
   }
 
   run(done) {
     var _this = this
-    this.userNames = this.allUserNames.slice(1, 2);
+    this.userNames = this.allUserNames.slice(1, 3);
+    this.userNames = this.userNames.concat(this.allUserNames.slice(1201, 1203));
+    this.userNames = this.userNames.concat(this.allUserNames.slice(3001, 3003));
+    this.userNames = this.userNames.concat(this.allUserNames.slice(5401, 5403));
+    this.userNames = this.userNames.concat(this.allUserNames.slice(6001, 6003));
+    this.userNames = this.userNames.concat(this.allUserNames.slice(7201, 7203));
+    this.userNames = this.userNames.concat(this.allUserNames.slice(9001, 9003));
     this.tags = this.allTags.slice(0, 5);
     var start = Date.now();
     async.each(this.userNames, (userName, done) => {
