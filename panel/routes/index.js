@@ -64,16 +64,33 @@ router.get('/', (req, res, next) => {
   },{
     $group: {
       _id: '$name',
-      best: {
-        $first: '$best'
+      bests: {
+        $push: '$best'
       }
     }
   },{
+    $project: {
+      _id: 1,
+      bests: {
+        $slice: ['$bests', 5, 5]
+      }
+    }
+  },{
+    $unwind: '$bests'
+  },{
+    $group: {
+      _id: 1,
+      'stage': { $first: '$bests.stage' },
+      'num': { $sum: '$bests.num' },
+      'score': { $avg: '$bests.score' },
+      'startAt': { $max: '$bests.startAt' },
+    }
+  },{
     $sort: {
-      'best.stage': -1,
-      'best.num': -1,
-      'best.score': -1,
-      'best.startAt': 1
+      'stage': -1,
+      'num': -1,
+      'score': -1,
+      'startAt': 1
     }
   }], (err, results) => {
     if ( err || !results ) {

@@ -29,9 +29,9 @@
         <% } %>
       </td>
       <td><strong><%= ranking._id %><strong></td>
-      <td><%= ranking.best.stage %></td>
-      <td><%= Math.floor(ranking.best.score * 100000) / 100 %></td>
-      <td><%= toDateString(ranking.best.startAt) %></td>
+      <td><%= ranking.stage %></td>
+      <td><%= Math.floor(ranking.score * 100000) / 100 %></td>
+      <td><%= toDateString(ranking.startAt) %></td>
     </tr>
     <% } %>
   </tbody>
